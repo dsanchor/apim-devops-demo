@@ -2,7 +2,9 @@ name: APIs deployment
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - dev
     paths:
       - 'apis/**'
       - '.github/workflows/apis-deployment.yaml'

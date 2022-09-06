@@ -2,7 +2,9 @@ name: APIM deployment
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - dev
     paths:
       - 'apim/*'
       - '.github/workflows/apim-deployment.yaml'
