@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
 
 env:
-  RG: contoso-${{env.GITHUB_REF_NAME}}-rg
-  APIM_SERVICE: contoso-${{env.GITHUB_REF_NAME}}-apim
-  SA: contoso${{env.GITHUB_REF_NAME}}apimsa
+  RG: contoso-${{ github.ref_name }}-rg
+  APIM_SERVICE: contoso-${{ github.ref_name }}-apim
+  SA: contoso${{ github.ref_name }}apimsa
 
 jobs:
 
@@ -34,7 +34,7 @@ jobs:
           inlineScript: |
             for api in `ls apis`
             do
-              az storage container create --name $api --account-name $SA  --public-access blob
+              az storage container create --name $api --account-name $SA  --public-access blob -g $RG
             done
 
       - name: Upload files for each API
