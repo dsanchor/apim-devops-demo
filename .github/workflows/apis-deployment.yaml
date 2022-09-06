@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
 
 env:
-  RG: contoso-dev-rg
-  APIM_SERVICE: contoso-dev-apim
-  SA: contosodevapimsa
+  RG: contoso-${{env.GITHUB_REF_NAME}}-rg
+  APIM_SERVICE: contoso-${{env.GITHUB_REF_NAME}}-apim
+  SA: contoso${{env.GITHUB_REF_NAME}}apimsa
 
 jobs:
 
