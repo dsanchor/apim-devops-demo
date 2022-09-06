@@ -30,7 +30,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init -backend-config=container_name="${env.GITHUB_HEAD_REF}-tfapim"
+        run: terraform init -backend-config=container_name="${{env.GITHUB_HEAD_REF }}-tfapim"
 
       - name: Terraform Apply
 #        run: terraform apply -auto-approve -var-file apim.${BRANCH_NAME}.tfvars
