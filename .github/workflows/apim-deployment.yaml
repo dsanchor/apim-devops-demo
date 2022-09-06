@@ -39,4 +39,4 @@ jobs:
 
       - name: Terraform Apply
 #        run: terraform apply -auto-approve -var-file apim.${BRANCH_NAME}.tfvars
-        run: terraform apply -auto-approve -var-file apim.tfvars -var="environment=${{ github.ref_name }}}"
+        run: terraform apply -auto-approve -var-file apim.tfvars -var="environment=${{ github.ref_name }}"
