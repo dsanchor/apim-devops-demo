@@ -1,0 +1,38 @@
+name: APIM deployment
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apim/*'
+      - '.github/workflows/apim-deployment.yaml'
+#  workflow_dispatch:
+
+jobs:
+  provision-infrastructure:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apim
+
+    env:
+      ARM_CLIENT_ID: ${{secrets.TF_ARM_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.TENANT_ID}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+ #     - uses: nelonoel/branch-name@v1.0.1
+ #     - run: echo "::set-env name=BRANCH_NAME::${{ github.head_ref }}"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+#        run: terraform apply -auto-approve -var-file apim.${BRANCH_NAME}.tfvars
+        run: terraform apply -auto-approve -var-file apim.tfvars
