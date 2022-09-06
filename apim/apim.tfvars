@@ -5,7 +5,7 @@ prefix = "contoso"
 apimSku = "Developer"
 apimSkuCapacity = 1
 apimPublisherName = "Contoso"
-apimPublisherEmail = "itadmin@contoso.com"
+apimPublisherEmail = "itadmins@contoso.com"
 
 
 
