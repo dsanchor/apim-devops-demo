@@ -26,14 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
- #     - uses: nelonoel/branch-name@v1.0.1
- #     - run: echo "::set-env name=BRANCH_NAME::${{ github.head_ref }}"
+      - uses: nelonoel/branch-name@v1.0.1
+      - run: echo "::set-env name=BRANCH_NAME::${{ github.head_ref }}"
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config=container_name=${BRANCH_NAME}-tfapim
 
       - name: Terraform Apply
 #        run: terraform apply -auto-approve -var-file apim.${BRANCH_NAME}.tfvars
