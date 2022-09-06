@@ -18,7 +18,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "terraform-global-rg"
     storage_account_name = "tfstategithubbackend"
-    container_name       = "tfapim"
+    container_name       = "${var.prefix}-${var.environment}-tfapim"
     key                  = "tfgithubactions.tfstate"
   }
 }
