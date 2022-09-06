@@ -10,12 +10,15 @@ on:
       - '.github/workflows/apis-deployment.yaml'
   workflow_dispatch:
 
+env:
+  RG: contoso-${{ github.ref_name }}-rg
+  APIM_SERVICE: contoso-${{ github.ref_name }}-apim
+  SA: contoso${{ github.ref_name }}apimsa
+
 jobs:
 
   upload-api-descriptors:
     runs-on: ubuntu-latest
-    env:
-      SA: contosoprodapimsa
 
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +34,7 @@ jobs:
           inlineScript: |
             for api in `ls apis`
             do
-              az storage container create --name $api --account-name $SA  --public-access blob
+              az storage container create --name $api --account-name $SA  --public-access blob -g $RG
             done
 
       - name: Upload files for each API
@@ -49,10 +52,7 @@ jobs:
   generate-arm-templates:
     runs-on: ubuntu-latest
     needs: upload-api-descriptors
-    env:
-      APIM_SERVICE: contoso-prod-apim
-      SA: contosoprodapimsa
-
+    
     steps:
       - uses: actions/checkout@v2
 
@@ -87,8 +87,6 @@ jobs:
   provision-apis:
     runs-on: ubuntu-latest
     needs: generate-arm-templates
-    env:
-      RG: contoso-rg
 
     steps:
 
@@ -114,10 +112,6 @@ jobs:
   delete-apis:
     runs-on: ubuntu-latest
     needs: provision-apis
-    env:
-      RG: contoso-rg
-      APIM_SERVICE: contoso-prod-apim
-      SA: contosoprodapimsa
 
     steps:
 

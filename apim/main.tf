@@ -18,14 +18,13 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "terraform-global-rg"
     storage_account_name = "tfstategithubbackend"
-    container_name       = "tfapim"
     key                  = "tfgithubactions.tfstate"
   }
 }
 
 # Constructed names of resources
 locals {
-  resourceGroupName = "${var.prefix}-rg"
+  resourceGroupName = "${var.prefix}-${var.environment}-rg"
   apimName          = "${var.prefix}-${var.environment}-apim"
   sku_name          = "${var.apimSku}_${var.apimSkuCapacity}"         
   storageAccountName= "${var.prefix}${var.environment}apimsa"
