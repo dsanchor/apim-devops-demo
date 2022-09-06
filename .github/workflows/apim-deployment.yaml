@@ -38,5 +38,4 @@ jobs:
         run: terraform init -backend-config=container_name=$TF_BACKEND_CONTAINER_NAME
 
       - name: Terraform Apply
-#        run: terraform apply -auto-approve -var-file apim.${BRANCH_NAME}.tfvars
         run: terraform apply -auto-approve -var-file apim.tfvars -var="environment=${{ github.ref_name }}"
