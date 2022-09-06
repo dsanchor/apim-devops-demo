@@ -6,9 +6,9 @@
 
  az account list -o table
 
- SUBS_ID=<pick your subs from above output>
+ SUBS_ID=<YOUR_SUBS_ID>
 
- NOTE: see if this two can be unified
+ NOTE: see if the following two SP can be unified in one
 
  For Github actions:
 

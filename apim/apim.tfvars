@@ -2,7 +2,7 @@
 location = "westeurope"
 region = "westeurope"
 prefix = "contoso"
-environment = "prod"
+environment = "dev"
 apimSku = "Developer"
 apimSkuCapacity = 1
 apimPublisherName = "Contoso"
