@@ -42,6 +42,11 @@
                         "type": "string"
                     },
                     {
+                        "name": "speakername2",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
                         "name": "speakerlastname",
                         "in": "query",
                         "type": "string"
